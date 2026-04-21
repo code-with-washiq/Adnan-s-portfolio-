@@ -24,53 +24,94 @@ body{
   min-height: 100vh;
 }
 
-/* --- NEW NEON SPIRAL LOADER STYLES --- */
+/* --- NEW NEON BLUE RADIAL LOADER IN GOLD FRAME STYLES --- */
 #loader {
     position: fixed;
     inset: 0;
-    background: #000; /* Pure black to make neon pop */
+    background: #000;
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    transition: opacity 0.8s ease, visibility 0.8s;
+    transition: opacity 1s ease, visibility 1s;
 }
 
-/* Spiral Container */
-.spiral-container {
-    position: relative;
-    width: 200px;
-    height: 200px;
+/* Gold Frame for the entire loader */
+.loader-container {
+    width: 250px;
+    height: 150px;
+    border: 3px solid #ffd700; /* Standard Gold Color */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), inset 0 0 10px rgba(255, 215, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
 }
 
-/* Base Neon Arcs - creating the spiral effect */
-.loader-arc {
+/* Glitch effect on the Gold Frame */
+.loader-container::before {
+    content: '';
     position: absolute;
-    border: 4px solid transparent;
-    border-top-color: #00d4ff; /* Neon Cyan */
-    border-radius: 50%;
-    box-shadow: 0 0 10px #00d4ff, inset 0 0 5px rgba(0, 212, 255, 0.5);
-    animation: spiralSpin 2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: #ffd700;
+    box-shadow: 0 0 10px #ffd700;
+    animation: frameScan 1s linear infinite;
 }
 
-/* Creating multi-layered arcs */
-.arc-1 { width: 200px; height: 200px; animation-delay: -0.1s; border-top-color: #00d4ff; }
-.arc-2 { width: 170px; height: 170px; animation-delay: -0.2s; border-top-color: rgba(0, 212, 255, 0.8); border-left-color: #00d4ff; }
-.arc-3 { width: 140px; height: 140px; animation-delay: -0.3s; border-top-color: rgba(0, 212, 255, 0.6); border-right-color: #00d4ff; }
-.arc-4 { width: 110px; height: 110px; animation-delay: -0.4s; border-top-color: rgba(0, 212, 255, 0.4); border-bottom-color: #00d4ff; }
-.arc-5 { width: 80px; height: 80px; animation-delay: -0.5s; border-top-color: #00d4ff; border-left-color: rgba(0, 212, 255, 0.8); }
+/* Neon Blue Radial Animation - Matches Video Style */
+.neon-radial {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 10px #00ffff, inset 0 0 5px #00ffff;
+    animation: radialSpin 1.5s linear infinite;
+    margin-right: 15px;
+}
+.neon-radial::before,
+.neon-radial::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ffff;
+}
+.neon-radial::before {
+    top: 5px; left: 5px; right: 5px; bottom: 5px;
+    background: conic-gradient(transparent 30%, #00ffff);
+}
+.neon-radial::after {
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    background: #000;
+}
 
-/* Stylish Percent Text */
-#loading-text {
-    font-family: 'Share Tech Mono', monospace; /* Coder Font */
-    font-size: 24px;
-    color: #00d4ff;
-    text-shadow: 0 0 10px #00d4ff, 0 0 15px rgba(0, 212, 255, 0.7);
-    margin-top: -10px; /* Adjusting vertical position to center in spiral */
+/* Hacking Scrolling Text Container */
+.scrolling-text-container {
+    height: 22px; /* Matches line-height */
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: 130px;
+}
+
+/* Stylish Hacking "LOADING" Text */
+.scrolling-text {
+    font-family: 'Share Tech Mono', monospace; /* Hacking font */
+    font-size: 16px;
+    color: #ffd700;
+    text-shadow: 0 0 8px #ffd700;
+    display: block;
+    line-height: 22px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    animation: textScroll 0.8s steps(4) infinite; /* 4 steps for 4 lines of text */
 }
 
 /* Loader Fade Out Class */
@@ -79,8 +120,22 @@ body{
     visibility: hidden;
 }
 
-/* Keyframes for Spiral Spin Animation */
-@keyframes spiralSpin {
+/* Keyframes for Gold Frame line animation */
+@keyframes frameScan {
+    0% { top: -10px; }
+    100% { top: 160px; }
+}
+
+/* Keyframes for Hacking Text Scroll */
+@keyframes textScroll {
+    0%, 24% { top: 0; }
+    25%, 49% { top: -22px; } /* Row 2 */
+    50%, 74% { top: -44px; } /* Row 3 */
+    75%, 100% { top: -66px; } /* Row 4 */
+}
+
+/* Keyframes for Neon Radial Animation */
+@keyframes radialSpin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
@@ -169,13 +224,16 @@ input, textarea{ padding:12px; border:1px solid rgba(255, 255, 255, 0.1); border
 <body onload="startApp()">
 
 <div id="loader">
-    <div class="spiral-container">
-        <div class="loader-arc arc-1"></div>
-        <div class="loader-arc arc-2"></div>
-        <div class="loader-arc arc-3"></div>
-        <div class="loader-arc arc-4"></div>
-        <div class="loader-arc arc-5"></div>
-        <div id="loading-text">0%</div>
+    <div class="loader-container">
+        <div class="neon-radial"></div>
+        <div class="scrolling-text-container">
+            <span class="scrolling-text">
+                LOADING...<br>
+                BYPASSING...<br>
+                FETCHING DATA...<br>
+                COMPLETE!
+            </span>
+        </div>
     </div>
 </div>
 
@@ -279,22 +337,8 @@ input, textarea{ padding:12px; border:1px solid rgba(255, 255, 255, 0.1); border
 </div>
 
 <script>
-// Handle Loading transition with Text Update
+// Handle Loading transition
 function startApp() {
-    const loadingText = document.getElementById('loading-text');
-    let percent = 0;
-    
-    // Smoothly update the percent text
-    const textInterval = setInterval(() => {
-        percent += 2; // Increase by 2%
-        if (percent <= 100) {
-            loadingText.innerText = percent + '%';
-        } else {
-            clearInterval(textInterval);
-        }
-    }, 70); // Update every 70ms to reach 100% in ~3.5s
-
-    // Total loading time (4 seconds to be safe)
     setTimeout(() => {
         const loader = document.getElementById('loader');
         const main = document.getElementById('main-content');
@@ -303,8 +347,8 @@ function startApp() {
         main.style.opacity = "1";
         document.body.style.overflow = "auto";
         
-        setTimeout(() => { loader.style.display = 'none'; }, 800);
-    }, 4000); 
+        setTimeout(() => { loader.style.display = 'none'; }, 1000);
+    }, 4500); // 4.5 seconds to show hacking text scroll
 }
 
 // Lightning Canvas
@@ -349,5 +393,5 @@ function toggleM() { if(m.paused) { m.play(); i.className = "fas fa-pause"; } el
 </script>
 
 </body>
-      </html>
-      
+  </html>
+  
