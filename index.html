@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Washiq Adnan | Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
@@ -20,43 +20,89 @@ body{
   background: #08000a;
   color:#fff;
   text-align:center;
-  overflow: hidden;
+  overflow: hidden; /* Hide scroll during loading */
   min-height: 100vh;
 }
 
-/* --- NEON LOADER STYLES --- */
+/* --- NEW GOLDEN HACKING LOADER STYLES --- */
 #loader {
     position: fixed;
     inset: 0;
-    background: #08000a;
+    background: #000;
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.8s ease, visibility 0.8s;
+    transition: opacity 1s ease, visibility 1s;
 }
 
-.spinner {
-    width: 60px;
-    height: 60px;
-    border: 4px solid rgba(255, 0, 204, 0.1);
-    border-top: 4px solid #ff00cc;
-    border-radius: 50%;
-    box-shadow: 0 0 15px #ff00cc;
-    animation: spin 1s linear infinite;
+/* Gold Frame */
+.gold-frame {
+    width: 200px;
+    height: 80px;
+    border: 3px solid #ffd700; /* Standard Gold Color */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5), inset 0 0 10px rgba(255, 215, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* Glitch/Hacking Effect on the Frame */
+.gold-frame::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: #ffd700;
+    box-shadow: 0 0 10px #ffd700;
+    animation: frameScan 1s linear infinite;
 }
 
+/* Scrolling Text Container */
+.scrolling-text-container {
+    height: 24px; /* Matches line-height */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Stylish "LOADING" Text */
+.scrolling-text {
+    font-family: 'Share Tech Mono', monospace; /* Hacking/Coder Font */
+    font-size: 18px;
+    color: #ffd700;
+    text-shadow: 0 0 8px #ffd700, 0 0 12px #ffd700;
+    display: block;
+    line-height: 24px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    animation: textScroll 1s steps(4) infinite; /* 4 steps for 4 lines of text */
+}
+
+/* Loader Fade Out Class */
 .fade-out {
     opacity: 0;
     visibility: hidden;
 }
 
-/* --- MAIN CONTENT --- */
+/* Keyframes for Gold Frame Line Animation */
+@keyframes frameScan {
+    0% { top: -10px; }
+    100% { top: 90px; }
+}
+
+/* Keyframes for Hacking Text Scroll */
+@keyframes textScroll {
+    0%, 24% { top: 0; }
+    25%, 49% { top: -24px; } /* Row 2 */
+    50%, 74% { top: -48px; } /* Row 3 */
+    75%, 100% { top: -72px; } /* Row 4 */
+}
+
+/* --- MAIN CONTENT STYLES --- */
 #main-content {
     opacity: 0;
     transition: opacity 1s ease;
@@ -111,6 +157,7 @@ h1{
 .menu-item i { font-size: 20px; color: #00d4ff; margin-bottom: 5px; display: block; }
 .menu-item span { font-size: 13px; font-weight: 600; }
 
+/* Drawers */
 .drawer {
     position: fixed; bottom: -100%; left: 0; width: 100%;
     background: #0d0012; border-top: 3px solid #ff00cc; border-radius: 25px 25px 0 0;
@@ -124,6 +171,7 @@ h1{
 .info-item h3 { font-size: 15px; color: #00d4ff; }
 .info-item p { font-size: 13px; color: #ddd; }
 
+/* Forms */
 form{ display:flex; flex-direction:column; gap:10px; }
 input, textarea{ padding:12px; border:1px solid rgba(255, 255, 255, 0.1); border-radius:8px; background: rgba(255,255,255,0.05); color: white; font-size: 14px; }
 .form-btn{ padding:12px; border:none; border-radius:8px; background:#ff00cc; color:#fff; font-weight: 600; cursor:pointer; }
@@ -138,7 +186,16 @@ input, textarea{ padding:12px; border:1px solid rgba(255, 255, 255, 0.1); border
 <body onload="startApp()">
 
 <div id="loader">
-    <div class="spinner"></div>
+    <div class="gold-frame">
+        <div class="scrolling-text-container">
+            <span class="scrolling-text">
+                LOADING...<br>
+                BYPASSING...<br>
+                FETCHING DATA...<br>
+                COMPLETE!
+            </span>
+        </div>
+    </div>
 </div>
 
 <div id="main-content">
@@ -158,7 +215,7 @@ input, textarea{ padding:12px; border:1px solid rgba(255, 255, 255, 0.1); border
         </div>
 
         <div class="name-wrapper">
-            <h1 id="typed-name">Washiq Adnan</h1>
+            <h1>Washiq Adnan</h1>
         </div>
         <p style="color: #00d4ff; font-size: 14px; margin-top: 5px;">Python & Node.js Expert</p>
 
@@ -246,19 +303,13 @@ function startApp() {
     setTimeout(() => {
         const loader = document.getElementById('loader');
         const main = document.getElementById('main-content');
-        const h1 = document.getElementById('typed-name');
         
         loader.classList.add('fade-out');
         main.style.opacity = "1";
         document.body.style.overflow = "auto";
         
-        // Ensure name animation starts exactly when content appears
-        h1.style.animation = 'none';
-        h1.offsetHeight; /* trigger reflow */
-        h1.style.animation = null;
-
-        setTimeout(() => { loader.style.display = 'none'; }, 800);
-    }, 2500); // 2.5 seconds loading time
+        setTimeout(() => { loader.style.display = 'none'; }, 1000);
+    }, 4500); // 4.5 seconds to show hacking text scroll
 }
 
 // Lightning Canvas
@@ -303,5 +354,5 @@ function toggleM() { if(m.paused) { m.play(); i.className = "fas fa-pause"; } el
 </script>
 
 </body>
-          </html>
+  </html>
   
