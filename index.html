@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Washiq Adnan // Encrypted Archive v3.0</title>
+<title>Washiq Adnan // Master Terminal</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,13 +14,11 @@
   --neon-pink: #ff00cc;
   --bg-dark: #050008;
   --glass: rgba(255, 255, 255, 0.05);
-  --border: rgba(255, 255, 255, 0.1);
 }
 
 *{
   margin:0; padding:0; box-sizing:border-box;
   font-family:'Poppins', sans-serif;
-  scroll-behavior: smooth; /* স্মুথ স্ক্রোলিং এর জন্য */
 }
 
 body {
@@ -31,11 +29,11 @@ body {
   min-height: 100vh;
 }
 
-/* --- LIGHTNING CANVAS ( retained previous style) --- */
+/* --- LIGHTNING CANVAS (বিদ্যুৎ চমকানোর ঝলক) --- */
 #lightningCanvas {
   position: fixed; top: 0; left: 0;
   width: 100%; height: 100%;
-  z-index: -1; /* ব্যাকগ্রাউন্ডে থাকবে */
+  z-index: -1;
   pointer-events: none;
 }
 
@@ -48,8 +46,7 @@ body {
 }
 
 .loader-wrap {
-    position: relative;
-    width: 220px; height: 220px;
+    position: relative; width: 220px; height: 220px;
     display: flex; justify-content: center; align-items: center;
 }
 
@@ -70,142 +67,75 @@ body {
 
 @keyframes rotate { 100% { transform: rotate(360deg); } }
 
-/* --- MAIN UI V3 --- */
-#main-content { opacity: 0; transition: 1.5s; position: relative; z-index: 1; }
+/* --- MAIN UI --- */
+#main-content { opacity: 0; transition: 1.5s; }
 
 .header-bar {
     padding: 15px 25px;
     background: rgba(0,0,0,0.6);
     backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     position: sticky; top: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
 }
 
-.music-control {
-    width: 40px; height: 40px; border-radius: 50%;
-    border: 1px solid var(--neon-blue);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; color: var(--neon-blue); transition: 0.3s;
-}
-.music-control:hover { background: rgba(0, 212, 255, 0.1); box-shadow: 0 0 10px var(--neon-blue); }
-
-/* Hexagon Profile */
 .profile-container {
     margin: 50px auto 20px;
     width: 170px; height: 170px;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
     padding: 6px;
-    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.5));
 }
 .profile-container img {
-    width: 100%; height: 100%;
-    clip-path: inherit;
-    object-fit: cover;
-    background: var(--bg-dark);
+    width: 100%; height: 100%; clip-path: inherit;
+    object-fit: cover; background: var(--bg-dark);
 }
 
-.hero h1 { font-family: 'Orbitron'; font-size: 2.2rem; margin-top: 15px; letter-spacing: 2px; }
-.tagline { color: var(--neon-blue); font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; font-weight: 300; }
+.hero h1 { font-family: 'Orbitron'; font-size: 2.2rem; letter-spacing: 2px; }
+.tagline { color: var(--neon-blue); font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; }
 
-/* Dashboard V3 - 4 Columns */
+/* Dashboard Grid (4 Columns) */
 .dash-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    padding: 0 20px;
-    max-width: 800px;
-    margin: 0 auto 50px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; padding: 0 15px; max-width: 850px; margin: 0 auto 40px;
 }
 
 .card {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 25px 10px;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: var(--glass); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px; padding: 20px 5px; cursor: pointer; transition: 0.4s;
 }
-.card:hover { 
-    border-color: var(--neon-blue); 
-    background: rgba(0, 212, 255, 0.08);
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
-}
-.card i { font-size: 26px; margin-bottom: 12px; color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink); }
-.card h3 { font-size: 14px; font-weight: 600; }
+.card:hover { border-color: var(--neon-blue); transform: translateY(-8px); background: rgba(0, 212, 255, 0.08); }
+.card i { font-size: 22px; margin-bottom: 10px; color: var(--neon-pink); }
+.card h3 { font-size: 12px; font-weight: 600; text-transform: uppercase; }
 
-/* --- GOOGLE RETRIEVED IMAGE GALLERY (New V3 সেকশন About এর উপরে) --- */
-.system-status-gallery {
-    max-width: 900px;
-    margin: 0 auto 60px;
-    padding: 0 20px;
-}
-.gallery-title { font-family: 'Orbitron'; color: #555; font-size: 12px; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 15px; }
-
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.image-card {
-    background: #000;
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    overflow: hidden;
-    position: relative;
-    transition: 0.3s;
-}
-.image-card:hover { border-color: var(--neon-blue); }
-
-.image-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    opacity: 0.7;
-    transition: 0.5s;
-}
-.image-card:hover img { opacity: 1; transform: scale(1.05); }
-
-.image-caption {
-    position: absolute; bottom: 0; left: 0; width: 100%;
-    padding: 15px;
-    background: linear-gradient(to top, #000, transparent);
-    text-align: left;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    color: var(--neon-blue);
-}
+/* Coding Gallery - Better Coding Images */
+.system-status-gallery { padding: 0 20px; max-width: 900px; margin: 0 auto 50px; }
+.image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.image-card { border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); position: relative; }
+.image-card img { width: 100%; height: 200px; object-fit: cover; opacity: 0.8; }
+.image-card:hover img { opacity: 1; }
 
 /* Information Drawers */
 .drawer {
     position: fixed; bottom: -100%; left: 0; width: 100%;
-    background: #0d0114;
-    border-top: 2px solid var(--neon-blue);
-    border-radius: 35px 35px 0 0;
-    padding: 40px 25px; z-index: 1001; transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    background: #0d0114; border-top: 2px solid var(--neon-blue);
+    border-radius: 35px 35px 0 0; padding: 40px 25px; z-index: 1001; transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .drawer.active { bottom: 0; }
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display:none; z-index:1000; backdrop-filter: blur(8px); }
 
 .info-box {
     text-align: left; background: rgba(255,255,255,0.03);
-    padding: 15px; border-radius: 15px; margin-bottom: 15px;
+    padding: 18px; border-radius: 15px; margin-bottom: 15px;
     border-left: 4px solid var(--neon-blue);
 }
 
-.social-list {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-}
+.social-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .social-list a {
     text-decoration: none; color: #fff; background: var(--glass);
     padding: 15px; border-radius: 12px; font-size: 13px;
-    display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
+    display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.1);
 }
-.social-list a:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
 
 .fade-out { opacity: 0; pointer-events: none; transition: 1s; }
 </style>
@@ -224,16 +154,17 @@ body {
         <div class="loader-circle circle-4"></div>
         <div class="percent" id="p_count">0%</div>
     </div>
-    <div style="margin-top: 30px; font-family: 'Share Tech Mono'; color: var(--neon-blue); letter-spacing: 3px;">DECRYPTING ARCHIVE...</div>
+    <div style="margin-top: 30px; font-family: 'Share Tech Mono'; color: var(--neon-blue); letter-spacing: 5px;">SYSTEM BOOTING...</div>
 </div>
 
 <div id="main-content">
     <canvas id="lightningCanvas"></canvas>
 
     <div class="header-bar">
-        <span style="font-family: 'Orbitron'; font-size: 11px; opacity: 0.5; letter-spacing: 2px;">WASHIQ ADNAN // SECURITY_CORE v3.0</span>
-        <div class="music-control" onclick="togglePlay()">
-            <i class="fas fa-pause" id="m_icon"></i> </div>
+        <span style="font-family: 'Orbitron'; font-size: 11px; opacity: 0.6;">WASHIQ ADNAN // SECURITY_V3</span>
+        <div class="music-control" onclick="togglePlay()" style="width:40px; height:40px; border:1px solid var(--neon-blue); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--neon-blue);">
+            <i class="fas fa-pause" id="m_icon"></i>
+        </div>
     </div>
 
     <div class="profile-container">
@@ -242,11 +173,12 @@ body {
 
     <div class="hero">
         <h1>Washiq Adnan</h1>
-        <div class="tagline">GoatBot Framework Expert</div>
+        <div class="tagline">Bot Architecture Specialist</div>
     </div>
 
     <div class="dash-grid">
-        <div class="card" onclick="scrollToAbout()"> <i class="fas fa-terminal"></i>
+        <div class="card" onclick="openD('aboutD')">
+            <i class="fas fa-terminal"></i>
             <h3>About</h3>
         </div>
         <div class="card" onclick="openD('eduD')">
@@ -264,53 +196,44 @@ body {
     </div>
 
     <div class="system-status-gallery">
-        <div class="gallery-title">// SYSTEM.STATUS // IMAGE_FEED</div>
+        <div style="font-family:'Orbitron'; font-size:10px; color:#555; letter-spacing:5px; margin-bottom:15px;">// RECENT_COMPILES //</div>
         <div class="image-grid">
             <div class="image-card">
-                <img src="https://www.netsolutions.com/wp-content/uploads/2024/12/Node-JS-vs-Python-Which-is-the-Right-Choice-for-a-Tech-Startup.webp" alt="Node.js vs Python">
-                <div class="image-caption">LOAD::CORE_LANGUAGES (image_25.png)</div>
+                <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Code">
             </div>
             <div class="image-card">
-                <img src="https://images.squarespace-cdn.com/content/v1/51be3e56e4b09edc5f81e74c/1551795460658-3V9NJNEAPEYZCYC3AY3N/SciFi_LoaderBlueA.jpg" alt="Sci-Fi Loader Interface">
-                <div class="image-caption">LOAD::UI_INTERFACE (image_27.png)</div>
+                <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Programming">
             </div>
         </div>
     </div>
 
-    <div id="about-section" style="padding: 60px 20px; background: rgba(0,0,0,0.4); border-top: 1px solid var(--border);">
-        <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 30px; letter-spacing: 5px;">// ABOUT //</h2>
-        <p style="max-width: 700px; margin: 0 auto; text-align: left; opacity: 0.8; line-height: 1.8;">
-            I am Washiq Adnan, a dedicated Full-Stack Bot Developer specializing in the GoatBot Framework and Messenger-based AI integration. With expert command over Node.js and Python, I architect advanced conversational modules and custom 3D graphics interfaces (Canvas) to elevate user experiences in messenger platforms. I'm currently expanding my knowledge in AI while pursuing my HSC 2nd Year (Science).
-        </p>
-    </div>
-
-    <div style="margin: 40px 0 20px; font-size: 10px; opacity: 0.4; letter-spacing: 5px; font-family: 'Share Tech Mono';">
-        © 2026 ADNAN SECURITY SYSTEMS. ALL RIGHTS RESERVED.
-    </div>
+    <div style="padding: 20px; font-size: 10px; opacity: 0.4; letter-spacing: 5px;">© 2026 ENCRYPTED TERMINAL</div>
 </div>
 
 <div id="overlay" onclick="closeAll()"></div>
 
+<div id="aboutD" class="drawer">
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">// ABOUT_ME //</h2>
+    <div class="info-box">
+        <p style="opacity: 0.9; line-height: 1.6;">
+            I am Washiq Adnan, a dedicated Full-Stack Bot Developer specializing in the GoatBot Framework and Messenger-based AI integration. With expert command over Node.js and Python, I architect advanced conversational modules and custom 3D graphics interfaces (Canvas) to elevate user experiences in messenger platforms. I'm currently expanding my knowledge in AI while pursuing my HSC 2nd Year (Science).
+        </p>
+    </div>
+    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">DISMISS</button>
+</div>
+
 <div id="eduD" class="drawer">
     <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">ACADEMIC_INFO</h2>
-    <div class="info-box">
-        <strong>Level:</strong><br>HSC 2nd Year (Science Group)
-    </div>
-    <div class="info-box">
-        <strong>Location:</strong><br>Dinajpur & জয়পুরহাট, Bangladesh (জয়পুরহাট ঠিক করা হয়েছে)
-    </div>
-    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold; cursor: pointer;">CLOSE</button>
+    <div class="info-box"><strong>Level:</strong> HSC 2nd Year (Science)</div>
+    <div class="info-box"><strong>Location:</strong> Dinajpur & জয়পুরহাট, Bangladesh</div>
+    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">CLOSE</button>
 </div>
 
 <div id="projD" class="drawer">
     <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">INITIATIVES</h2>
-    <div class="info-box">
-        <strong>Raha AI / Kabbo U.A.I:</strong><br>Advanced conversational LLM bots for messenger platforms, handling complex user interactions.
-    </div>
-    <div class="info-box">
-        <strong>Canvas Modules:</strong><br>Custom 3D graphics and casino game interfaces created with GoatBot Framework.
-    </div>
-    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold; cursor: pointer;">CLOSE</button>
+    <div class="info-box"><strong>Raha AI / Kabbo U.A.I:</strong> Advanced LLM bots for messenger platforms.</div>
+    <div class="info-box"><strong>Canvas Modules:</strong> Custom graphics & game interfaces with GoatBot Framework.</div>
+    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">CLOSE</button>
 </div>
 
 <div id="socD" class="drawer">
@@ -320,13 +243,15 @@ body {
         <a href="https://m.me/washiqadnan.fb"><i class="fab fa-messenger"></i> Messenger</a>
         <a href="https://wa.me/8801303790672"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         <a href="https://t.me/+8801303790672"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="https://www.tiktok.com/@loser_0.98"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a href="https://chithi.me/washiq_adnan"><i class="fas fa-envelope-open-text"></i> Chithi.me</a>
         <a href="mailto:Washidev4@gmail.com" style="grid-column: span 2;"><i class="fas fa-envelope"></i> Washidev4@gmail.com</a>
     </div>
-    <button onclick="closeAll()" style="width:100%; margin-top:20px; padding:15px; border-radius:15px; background:var(--neon-pink); border:none; color:#fff; font-weight:bold; cursor: pointer;">DISMISS</button>
+    <button onclick="closeAll()" style="width:100%; margin-top:20px; padding:15px; border-radius:15px; background:var(--neon-pink); border:none; color:#fff; font-weight:bold;">DISMISS</button>
 </div>
 
 <script>
-// --- Retained Lightning Canvas Effect from previous version ---
+// Lightning Canvas Effect
 const canvas = document.getElementById('lightningCanvas');
 const ctx = canvas.getContext('2d');
 let w, h;
@@ -360,18 +285,13 @@ function anim() {
     bolt.draw(); requestAnimationFrame(anim);
 }
 anim();
-// --- End Lightning Effect ---
 
 function init() {
     let p = 0;
     const pEl = document.getElementById('p_count');
     const interval = setInterval(() => {
         p += Math.floor(Math.random() * 4) + 1;
-        if(p >= 100) {
-            p = 100;
-            clearInterval(interval);
-            setTimeout(showContent, 500);
-        }
+        if(p >= 100) { p = 100; clearInterval(interval); setTimeout(showContent, 500); }
         pEl.innerText = p + "%";
     }, 50);
 }
@@ -379,41 +299,17 @@ function init() {
 function showContent() {
     document.getElementById('loader').classList.add('fade-out');
     document.getElementById('main-content').style.opacity = "1";
-    // মিউজিক অটো-প্লে এবং বাটন আইকন আপডেট
-    document.getElementById('bgm').play().catch(() => {
-        console.log("Audio needs user interaction");
-        document.getElementById('m_icon').className = "fas fa-music"; // যদি অটো-প্লে না হয়
-    });
+    document.getElementById('bgm').play().catch(() => {});
 }
 
-function openD(id) {
-    document.getElementById(id).classList.add('active');
-    document.getElementById('overlay').style.display = 'block';
-}
-
-function closeAll() {
-    document.querySelectorAll('.drawer').forEach(d => d.classList.remove('active'));
-    document.getElementById('overlay').style.display = 'none';
-}
-
+function openD(id) { document.getElementById(id).classList.add('active'); document.getElementById('overlay').style.display = 'block'; }
+function closeAll() { document.querySelectorAll('.drawer').forEach(d => d.classList.remove('active')); document.getElementById('overlay').style.display = 'none'; }
 function togglePlay() {
-    const m = document.getElementById('bgm');
-    const icon = document.getElementById('m_icon');
-    if(m.paused) {
-        m.play();
-        icon.className = "fas fa-pause";
-    } else {
-        m.pause();
-        icon.className = "fas fa-music";
-    }
-}
-
-// About সেকশনে স্মুথ স্ক্রোলিং
-function scrollToAbout() {
-    document.getElementById('about-section').scrollIntoView();
+    const m = document.getElementById('bgm'), i = document.getElementById('m_icon');
+    if(m.paused) { m.play(); i.className = "fas fa-pause"; } else { m.pause(); i.className = "fas fa-music"; }
 }
 </script>
 
 </body>
-  </html>
-  
+          </html>
+          
