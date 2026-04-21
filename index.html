@@ -71,7 +71,7 @@ body {
     padding: 15px 25px;
     background: rgba(0,0,0,0.6);
     backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: sticky; top: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
 }
@@ -102,7 +102,7 @@ body {
 }
 .card:hover { border-color: var(--neon-blue); transform: translateY(-8px); background: rgba(0, 212, 255, 0.08); }
 .card i { font-size: 22px; margin-bottom: 10px; color: var(--neon-pink); }
-.card h3 { font-size: 12px; font-weight: 600; text-transform: uppercase; }
+.card h3 { font-size: 10px; font-weight: 600; text-transform: uppercase; }
 
 .system-status-gallery { padding: 0 20px; max-width: 900px; margin: 0 auto 50px; }
 .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
@@ -167,21 +167,21 @@ body {
 
     <div class="hero">
         <h1>Washiq Adnan</h1>
-        <div class="tagline">Bot Architecture Specialist</div>
+        <div class="tagline">Full-Stack Developer</div>
     </div>
 
     <div class="dash-grid">
         <div class="card" onclick="openD('aboutD')">
-            <i class="fas fa-terminal"></i>
-            <h3>About</h3>
+            <i class="fas fa-user-secret"></i>
+            <h3>About Me</h3>
         </div>
         <div class="card" onclick="openD('eduD')">
             <i class="fas fa-university"></i>
             <h3>Education</h3>
         </div>
         <div class="card" onclick="openD('projD')">
-            <i class="fas fa-bolt"></i>
-            <h3>Projects</h3>
+            <i class="fas fa-server"></i>
+            <h3>Development</h3>
         </div>
         <div class="card" onclick="openD('socD')">
             <i class="fas fa-address-book"></i>
@@ -207,31 +207,51 @@ body {
 <div id="overlay" onclick="closeAll()"></div>
 
 <div id="aboutD" class="drawer">
-    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">// ABOUT_ME //</h2>
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">// BIOMETRIC_DATA //</h2>
     <div class="info-box">
-        <p style="opacity: 0.9; line-height: 1.6;">
-            I am Washiq Adnan, a dedicated Full-Stack Bot Developer specializing in the GoatBot Framework and Messenger-based AI integration. With expert command over Node.js and Python, I architect advanced conversational modules and custom 3D graphics interfaces (Canvas) to elevate user experiences in messenger platforms. I'm currently expanding my knowledge in AI while pursuing my HSC 2nd Year (Science).
-        </p>
+        <strong>Name:</strong> Washiq Adnan<br>
+        <strong>DOB:</strong> 27th of July 2007<br>
+        <strong>Blood Group:</strong> O Positive (O+)
+    </div>
+    <div class="info-box">
+        <strong>Profession:</strong> Full-Stack Bot Developer & Student
+    </div>
+    <div class="info-box">
+        <strong>Bio:</strong> Specializing in the GoatBot Framework and Messenger-based AI integration. Architecting advanced conversational modules and custom 3D graphics interfaces.
     </div>
     <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">DISMISS</button>
 </div>
 
 <div id="eduD" class="drawer">
-    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">ACADEMIC_INFO</h2>
-    <div class="info-box"><strong>Level:</strong> HSC 2nd Year (Science)</div>
-    <div class="info-box"><strong>Location:</strong> Dinajpur & Joypurhat, Bangladesh</div>
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">// ACADEMIC_PATH //</h2>
+    <div class="info-box">
+        <strong>Status:</strong> HSC 2nd Year Student
+    </div>
+    <div class="info-box">
+        <strong>Institute:</strong> Polytechnic College, Bogura
+    </div>
+    <div class="info-box">
+        <strong>Location:</strong> Ghoraghat, Dinajpur & Joypurhat, Bangladesh
+    </div>
     <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">CLOSE</button>
 </div>
 
 <div id="projD" class="drawer">
-    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">INITIATIVES</h2>
-    <div class="info-box"><strong>Raha AI / Kabbo U.A.I:</strong> Advanced LLM bots for messenger platforms.</div>
-    <div class="info-box"><strong>Canvas Modules:</strong> Custom graphics & game interfaces with GoatBot Framework.</div>
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">// SERVER_LOGS //</h2>
+    <div class="info-box">
+        <strong>Server:</strong> Ariyan's Nexona VPS Server
+    </div>
+    <div class="info-box">
+        <strong>Projects:</strong> Raha AI / Kabbo U.A.I (Advanced LLM bots for messenger platforms).
+    </div>
+    <div class="info-box">
+        <strong>Expertise:</strong> Canvas Design, Node.js Automation, API Integration.
+    </div>
     <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">CLOSE</button>
 </div>
 
 <div id="socD" class="drawer">
-    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">CONTACT_MESH</h2>
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">// CONTACT_MESH //</h2>
     <div class="social-list">
         <a href="https://www.facebook.com/share/1KNxtzq8jn/"><i class="fab fa-facebook"></i> Facebook</a>
         <a href="https://m.me/washiqadnan.fb"><i class="fab fa-messenger"></i> Messenger</a>
@@ -304,5 +324,4 @@ function togglePlay() {
 </script>
 
 </body>
-      </html>
-      
+</html>
