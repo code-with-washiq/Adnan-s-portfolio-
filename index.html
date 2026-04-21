@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Washiq Adnan | Portfolio v2</title>
+<title>Washiq Adnan | Official Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,6 +13,7 @@
   --neon-blue: #00d4ff;
   --neon-pink: #ff00cc;
   --bg-dark: #050008;
+  --glass: rgba(255, 255, 255, 0.05);
 }
 
 *{
@@ -20,7 +21,7 @@
   font-family:'Poppins', sans-serif;
 }
 
-body{
+body {
   background: var(--bg-dark);
   color:#fff;
   text-align:center;
@@ -28,7 +29,7 @@ body{
   min-height: 100vh;
 }
 
-/* --- VIDEO-MATCHING PRECISE LOADER --- */
+/* --- VIDEO-ACCURATE LOADER --- */
 #loader {
     position: fixed; inset: 0;
     background: #000; z-index: 9999;
@@ -36,237 +37,273 @@ body{
     flex-direction: column;
 }
 
-.video-loader-container {
+.loader-wrap {
     position: relative;
-    width: 200px; height: 200px;
+    width: 220px; height: 220px;
     display: flex; justify-content: center; align-items: center;
 }
 
-/* ভিডিওর মতো ডটেড এবং সার্কুলার রিংস */
-.ring-track {
-    position: absolute;
-    width: 100%; height: 100%;
-    border: 2px dashed rgba(0, 212, 255, 0.1);
-    border-radius: 50%;
-}
-
+/* ভিডিওর সেই নির্দিষ্ট স্পাইরাল সার্কেল গুলো */
 .loader-circle {
     position: absolute;
-    width: 100%; height: 100%;
-    border: 4px solid transparent;
-    border-top: 4px solid var(--neon-blue);
+    border: 2px solid transparent;
     border-radius: 50%;
-    filter: drop-shadow(0 0 10px var(--neon-blue));
-    animation: spin var(--d) linear infinite;
+    animation: rotate var(--time) linear infinite;
 }
 
-.percent-display {
+.circle-1 { width: 100%; height: 100%; border-top: 3px solid var(--neon-blue); --time: 2s; opacity: 0.3; }
+.circle-2 { width: 85%; height: 85%; border-left: 3px solid var(--neon-blue); --time: 1.5s; opacity: 0.5; }
+.circle-3 { width: 70%; height: 70%; border-right: 3px solid var(--neon-pink); --time: 1s; opacity: 0.8; }
+.circle-4 { width: 55%; height: 55%; border-bottom: 3px solid var(--neon-blue); --time: 0.8s; }
+
+.percent {
     font-family: 'Orbitron', sans-serif;
-    font-size: 32px;
+    font-size: 2.5rem;
     color: var(--neon-blue);
     text-shadow: 0 0 20px var(--neon-blue);
 }
 
-@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes rotate { 100% { transform: rotate(360deg); } }
 
-/* --- UI UPDATED CONTENT --- */
-#main-content { opacity: 0; transition: 1.5s ease-in-out; }
+/* --- MAIN UI --- */
+#main-content { opacity: 0; transition: 1.5s; }
 
-.glass-header {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px; position: sticky; top: 0; z-index: 100;
+.header-bar {
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass);
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
 }
 
-.profile-hex {
-    width: 140px; height: 140px;
-    margin: 30px auto;
+.music-control {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--neon-blue);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--neon-blue);
+}
+
+/* Hexagon Profile */
+.profile-container {
+    margin: 40px auto 20px;
+    width: 160px; height: 160px;
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-    background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
-    padding: 4px;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+    padding: 5px;
 }
-
-.profile-hex img {
+.profile-container img {
     width: 100%; height: 100%;
     clip-path: inherit;
     object-fit: cover;
     background: var(--bg-dark);
 }
 
-.hero-text h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.2rem;
-    background: linear-gradient(to right, #fff, var(--neon-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+.hero h1 { font-family: 'Orbitron'; font-size: 2rem; margin-top: 10px; }
+.tagline { color: var(--neon-blue); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
 
-.status-badge {
-    display: inline-block;
-    padding: 5px 15px;
-    background: rgba(0, 212, 255, 0.1);
-    border: 1px solid var(--neon-blue);
-    border-radius: 20px;
-    font-size: 12px;
-    color: var(--neon-blue);
-    margin-top: 10px;
-    text-transform: uppercase;
-}
-
-.card-container {
-    padding: 20px;
+/* Dashboard Cards */
+.dash-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-    max-width: 800px;
+    padding: 20px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
-.premium-card {
-    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+.card {
+    background: var(--glass);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 24px;
+    border-radius: 20px;
     padding: 25px 15px;
-    transition: 0.4s;
+    transition: 0.3s;
     cursor: pointer;
-    overflow: hidden;
-    position: relative;
 }
-
-.premium-card::before {
-    content: ''; position: absolute; top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-    transition: 0.5s;
+.card:hover { 
+    border-color: var(--neon-blue); 
+    background: rgba(0, 212, 255, 0.05);
+    transform: translateY(-5px);
 }
+.card i { font-size: 24px; margin-bottom: 10px; color: var(--neon-pink); }
 
-.premium-card:hover::before { left: 100%; }
-
-.premium-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--neon-blue);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
-}
-
-.premium-card i {
-    font-size: 28px;
-    margin-bottom: 15px;
-    background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Drawers & Logic */
+/* Information Drawers */
 .drawer {
     position: fixed; bottom: -100%; left: 0; width: 100%;
-    background: #0a0510; 
+    background: #0d0114;
     border-top: 2px solid var(--neon-blue);
-    border-radius: 40px 40px 0 0;
-    padding: 40px 25px; z-index: 1001; transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-radius: 35px 35px 0 0;
+    padding: 40px 25px; z-index: 1001; transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .drawer.active { bottom: 0; }
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display:none; z-index:1000; backdrop-filter: blur(8px); }
 
+.info-box {
+    text-align: left; background: rgba(255,255,255,0.03);
+    padding: 15px; border-radius: 15px; margin-bottom: 15px;
+    border-left: 4px solid var(--neon-blue);
+}
+
+.social-list {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.social-list a {
+    text-decoration: none; color: #fff; background: var(--glass);
+    padding: 15px; border-radius: 12px; font-size: 13px;
+    display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.1);
+}
+
 .fade-out { opacity: 0; pointer-events: none; transition: 1s; }
 </style>
 </head>
-<body onload="startApp()">
+<body onload="init()">
+
+<audio id="bgm" loop>
+    <source src="https://files.catbox.moe/j1lae6.mp3" type="audio/mpeg">
+</audio>
 
 <div id="loader">
-    <div class="video-loader-container">
-        <div class="ring-track"></div>
-        <div class="loader-circle" style="--d: 1s; width: 100%; height: 100%;"></div>
-        <div class="loader-circle" style="--d: 1.5s; width: 80%; height: 80%; border-top-color: var(--neon-pink);"></div>
-        <div class="loader-circle" style="--d: 2s; width: 60%; height: 60%;"></div>
-        <div class="percent-display" id="perc">0%</div>
+    <div class="loader-wrap">
+        <div class="loader-circle circle-1"></div>
+        <div class="loader-circle circle-2"></div>
+        <div class="loader-circle circle-3"></div>
+        <div class="loader-circle circle-4"></div>
+        <div class="percent" id="p_count">0%</div>
     </div>
-    <div style="margin-top: 30px; font-family: 'Share Tech Mono'; color: #555;">SYSTEM.INITIALIZE_SEQUENCE(...)</div>
+    <div style="margin-top: 30px; font-family: 'Share Tech Mono'; color: var(--neon-blue); letter-spacing: 3px;">BYPASSING SECURITY...</div>
 </div>
 
 <div id="main-content">
-    <div class="glass-header">
-        <h2 style="font-family: 'Orbitron'; font-size: 16px; letter-spacing: 3px;">ADNAN ARCHIVE v2.0</h2>
-    </div>
-
-    <div class="hero-section">
-        <div class="profile-hex">
-            <img src="https://files.catbox.moe/8ca69l.jpeg" alt="Adnan">
-        </div>
-        <div class="hero-text">
-            <h1>Washiq Adnan</h1>
-            <div class="status-badge"><i class="fas fa-circle" style="font-size: 8px; vertical-align: middle;"></i> System Developer</div>
+    <div class="header-bar">
+        <span style="font-family: 'Orbitron'; font-size: 12px; opacity: 0.6;">WASHIQ ADNAN // OS</span>
+        <div class="music-control" onclick="togglePlay()">
+            <i class="fas fa-music" id="m_icon"></i>
         </div>
     </div>
 
-    <div class="card-container">
-        <div class="premium-card" onclick="openD('proD')">
-            <i class="fas fa-code-branch"></i>
-            <h3>Tech Stack</h3>
+    <div class="profile-container">
+        <img src="https://files.catbox.moe/8ca69l.jpeg" alt="Adnan">
+    </div>
+
+    <div class="hero">
+        <h1>Washiq Adnan</h1>
+        <div class="tagline">Full-Stack Bot Developer</div>
+    </div>
+
+    <div class="dash-grid">
+        <div class="card" onclick="openD('proD')">
+            <i class="fas fa-terminal"></i>
+            <h3>Skills</h3>
         </div>
-        <div class="premium-card" onclick="openD('eduD')">
-            <i class="fas fa-graduation-cap"></i>
+        <div class="card" onclick="openD('eduD')">
+            <i class="fas fa-university"></i>
             <h3>Education</h3>
         </div>
-        <div class="premium-card" onclick="openD('projD')">
-            <i class="fas fa-bolt"></i>
-            <h3>Raha AI</h3>
+        <div class="card" onclick="openD('projD')">
+            <i class="fas fa-brain"></i>
+            <h3>Projects</h3>
         </div>
-        <div class="premium-card" onclick="openD('socD')">
-            <i class="fas fa-satellite-dish"></i>
-            <h3>Networks</h3>
+        <div class="card" onclick="openD('socD')">
+            <i class="fas fa-address-book"></i>
+            <h3>Contact</h3>
         </div>
     </div>
 
-    <div style="margin-top: 50px; padding: 20px; opacity: 0.5; font-size: 12px; letter-spacing: 2px;">
-        ENCRYPTED TERMINAL © 2026
+    <div style="margin: 40px 0; font-size: 10px; opacity: 0.4; letter-spacing: 5px;">
+        © 2026 ENCRYPTED TERMINAL
     </div>
 </div>
 
 <div id="overlay" onclick="closeAll()"></div>
 
 <div id="proD" class="drawer">
-    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 15px;">DEVELOPER_CORE</h2>
-    <p style="opacity: 0.7; margin-bottom: 20px;">Specializing in Backend Automation & AI Integration.</p>
-    <div style="text-align: left; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border-left: 3px solid var(--neon-pink);">
-        <code style="color: var(--neon-blue);"># Languages: Node.js, Python, C++<br># Speciality: Messenger Bot Logic</code>
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">CORE_SKILLS</h2>
+    <div class="info-box">
+        <strong>Languages:</strong><br>Node.js (Expert), Python, JavaScript, C++
     </div>
-    <button onclick="closeAll()" style="width:100%; margin-top:20px; padding:15px; background:var(--neon-blue); border:none; border-radius:15px; color:#000; font-weight:bold;">RETURN</button>
+    <div class="info-box">
+        <strong>Expertise:</strong><br>Bot Automation, API Integration, GoatBot Framework, Canvas Design
+    </div>
+    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">CLOSE</button>
+</div>
+
+<div id="eduD" class="drawer">
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">ACADEMIC_INFO</h2>
+    <div class="info-box">
+        <strong>Level:</strong><br>HSC 2nd Year (Science)
+    </div>
+    <div class="info-box">
+        <strong>Location:</strong><br>Dinajpur & Naugaon, Bangladesh
+    </div>
+    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">CLOSE</button>
+</div>
+
+<div id="projD" class="drawer">
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">INITIATIVES</h2>
+    <div class="info-box">
+        <strong>Raha AI / Kabbo U.A.I:</strong><br>Advanced conversational LLM bots for messenger platforms.
+    </div>
+    <div class="info-box">
+        <strong>Canvas Modules:</strong><br>Custom 3D graphics and casino game interfaces for bots.
+    </div>
+    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">CLOSE</button>
 </div>
 
 <div id="socD" class="drawer">
-    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 25px;">SOCIAL_GRID</h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <a href="https://m.me/washiqadnan.fb" style="text-decoration:none; padding:15px; background:rgba(255,255,255,0.05); border-radius:15px; color:#fff;"><i class="fab fa-facebook-messenger"></i> Messenger</a>
-        <a href="https://t.me/+8801303790672" style="text-decoration:none; padding:15px; background:rgba(255,255,255,0.05); border-radius:15px; color:#fff;"><i class="fab fa-telegram"></i> Telegram</a>
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">CONTACT_MESH</h2>
+    <div class="social-list">
+        <a href="https://www.facebook.com/share/1KNxtzq8jn/"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://m.me/washiqadnan.fb"><i class="fab fa-messenger"></i> Messenger</a>
+        <a href="https://wa.me/8801303790672"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://t.me/+8801303790672"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="mailto:Washidev4@gmail.com" style="grid-column: span 2;"><i class="fas fa-envelope"></i> Washidev4@gmail.com</a>
     </div>
+    <button onclick="closeAll()" style="width:100%; margin-top:20px; padding:15px; border-radius:15px; background:var(--neon-pink); border:none; color:#fff; font-weight:bold;">DISMISS</button>
 </div>
 
 <script>
-function startApp() {
+function init() {
     let p = 0;
-    const txt = document.getElementById('perc');
-    const load = setInterval(() => {
-        p += Math.floor(Math.random() * 3) + 1; // ভিডিওর মত একটু রেন্ডম স্পিড
-        if(p > 100) p = 100;
-        txt.innerText = p + "%";
-        if(p == 100) {
-            clearInterval(load);
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('fade-out');
-                document.getElementById('main-content').style.opacity = "1";
-            }, 500);
+    const pEl = document.getElementById('p_count');
+    const interval = setInterval(() => {
+        p += Math.floor(Math.random() * 4) + 1;
+        if(p >= 100) {
+            p = 100;
+            clearInterval(interval);
+            setTimeout(showContent, 500);
         }
-    }, 50);
+        pEl.innerText = p + "%";
+    }, 60);
 }
 
-function openD(id) { 
-    document.getElementById(id).classList.add('active'); 
-    document.getElementById('overlay').style.display = 'block'; 
+function showContent() {
+    document.getElementById('loader').classList.add('fade-out');
+    document.getElementById('main-content').style.opacity = "1";
+    // অডিও অটো-প্লে (ব্রাউজার পারমিশন সাপেক্ষে)
+    document.getElementById('bgm').play().catch(() => console.log("Audio needs user interaction"));
 }
-function closeAll() { 
-    document.querySelectorAll('.drawer').forEach(d => d.classList.remove('active')); 
-    document.getElementById('overlay').style.display = 'none'; 
+
+function openD(id) {
+    document.getElementById(id).classList.add('active');
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function closeAll() {
+    document.querySelectorAll('.drawer').forEach(d => d.classList.remove('active'));
+    document.getElementById('overlay').style.display = 'none';
+}
+
+function togglePlay() {
+    const m = document.getElementById('bgm');
+    const icon = document.getElementById('m_icon');
+    if(m.paused) {
+        m.play();
+        icon.className = "fas fa-pause";
+    } else {
+        m.pause();
+        icon.className = "fas fa-music";
+    }
 }
 </script>
 
