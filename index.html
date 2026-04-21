@@ -3,328 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Washiq Adnan | Portfolio</title>
+<title>Washiq Adnan | Portfolio v2</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
+:root {
+  --neon-blue: #00d4ff;
+  --neon-pink: #ff00cc;
+  --bg-dark: #050008;
+}
+
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
+  margin:0; padding:0; box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
 }
 
 body{
-  background: #050008;
+  background: var(--bg-dark);
   color:#fff;
   text-align:center;
-  overflow: hidden;
+  overflow-x: hidden;
   min-height: 100vh;
 }
 
-/* --- VIDEO STYLE SCI-FI LOADER --- */
+/* --- VIDEO-MATCHING PRECISE LOADER --- */
 #loader {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: fixed; inset: 0;
+    background: #000; z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
     flex-direction: column;
-    transition: opacity 1s ease, visibility 1s;
 }
 
-.loader-video-style {
+.video-loader-container {
     position: relative;
-    width: 250px;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 200px; height: 200px;
+    display: flex; justify-content: center; align-items: center;
 }
 
-/* সার্কুলার রিংস যা ভিডিওর মত ঘুরবে */
-.ring {
+/* ভিডিওর মতো ডটেড এবং সার্কুলার রিংস */
+.ring-track {
     position: absolute;
-    border: 2px solid transparent;
+    width: 100%; height: 100%;
+    border: 2px dashed rgba(0, 212, 255, 0.1);
     border-radius: 50%;
-    border-top-color: #00d4ff;
-    animation: rotate var(--duration) linear infinite;
 }
 
-.ring:nth-child(1) { width: 100%; height: 100%; --duration: 2s; border-right-color: #00d4ff; opacity: 0.2; }
-.ring:nth-child(2) { width: 80%; height: 80%; --duration: 1.5s; border-left-color: #00d4ff; opacity: 0.4; }
-.ring:nth-child(3) { width: 60%; height: 60%; --duration: 1s; border-bottom-color: #00d4ff; opacity: 0.6; }
-.ring:nth-child(4) { width: 40%; height: 40%; --duration: 0.8s; border-top-color: #00d4ff; opacity: 0.8; }
+.loader-circle {
+    position: absolute;
+    width: 100%; height: 100%;
+    border: 4px solid transparent;
+    border-top: 4px solid var(--neon-blue);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px var(--neon-blue));
+    animation: spin var(--d) linear infinite;
+}
 
-/* পার্সেন্টেজ টেক্সট */
-.percent-text {
-    font-family: 'Share Tech Mono', monospace;
+.percent-display {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    color: var(--neon-blue);
+    text-shadow: 0 0 20px var(--neon-blue);
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* --- UI UPDATED CONTENT --- */
+#main-content { opacity: 0; transition: 1.5s ease-in-out; }
+
+.glass-header {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px; position: sticky; top: 0; z-index: 100;
+}
+
+.profile-hex {
+    width: 140px; height: 140px;
+    margin: 30px auto;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+    padding: 4px;
+}
+
+.profile-hex img {
+    width: 100%; height: 100%;
+    clip-path: inherit;
+    object-fit: cover;
+    background: var(--bg-dark);
+}
+
+.hero-text h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    background: linear-gradient(to right, #fff, var(--neon-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid var(--neon-blue);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--neon-blue);
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.card-container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.premium-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 25px 15px;
+    transition: 0.4s;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.premium-card::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    transition: 0.5s;
+}
+
+.premium-card:hover::before { left: 100%; }
+
+.premium-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
+}
+
+.premium-card i {
     font-size: 28px;
-    color: #00d4ff;
-    text-shadow: 0 0 15px #00d4ff;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* --- UI UPDATES --- */
-#main-content { opacity: 0; transition: opacity 1.2s ease; }
-
-#lightningCanvas {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -1;
-}
-
-.container{ padding:50px 20px; position: relative; z-index: 1; }
-
-.profile-area { margin-bottom: 30px; }
-.profile{
-  position:relative; width:150px; height:150px; margin:auto;
-  border-radius:50%; padding: 5px;
-  background: linear-gradient(45deg, #ff00cc, #00d4ff);
-  box-shadow: 0 0 20px rgba(255, 0, 204, 0.5);
-}
-.profile img{
-  width:100%; height:100%; border-radius:50%;
-  border:4px solid #050008; object-fit:cover;
-}
-
-h1 { font-size: 30px; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 20px;
-  margin: 25px auto;
-  max-width: 600px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top: 15px; }
-.grid img{ width:100%; height: 100px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.3); }
-
-.menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 500px; margin: 20px auto; }
-.menu-item {
-    background: linear-gradient(145deg, rgba(255,0,204,0.1), rgba(0,212,255,0.1));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px; border-radius: 18px;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.menu-item:hover { 
-    transform: translateY(-8px); 
-    border-color: #00d4ff;
-    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
-}
-.menu-item i { font-size: 24px; color: #ff00cc; margin-bottom: 8px; display: block; }
-
-/* Drawers & Forms */
+/* Drawers & Logic */
 .drawer {
     position: fixed; bottom: -100%; left: 0; width: 100%;
-    background: #0a000f; border-top: 2px solid #00d4ff; border-radius: 30px 30px 0 0;
-    padding: 35px 25px; z-index: 1001; transition: 0.6s;
+    background: #0a0510; 
+    border-top: 2px solid var(--neon-blue);
+    border-radius: 40px 40px 0 0;
+    padding: 40px 25px; z-index: 1001; transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .drawer.active { bottom: 0; }
-#overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display:none; z-index:1000; backdrop-filter: blur(4px); }
+#overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display:none; z-index:1000; backdrop-filter: blur(8px); }
 
-.info-item { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-bottom: 12px; border-right: 4px solid #00d4ff; text-align: left; }
-
-.form-btn{ 
-    width: 100%; padding:15px; border:none; border-radius:12px; 
-    background: linear-gradient(90deg, #ff00cc, #3333ff);
-    color:#fff; font-weight: 600; cursor:pointer; margin-top: 10px;
-}
-
-.music-btn { position: fixed; top: 20px; right: 20px; z-index: 100; width: 45px; height: 45px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid #00d4ff; }
-
-.social-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.social-links a { text-decoration: none; color: #fff; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; font-size: 13px; display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.1); }
-
-.fade-out { opacity: 0; visibility: hidden; }
+.fade-out { opacity: 0; pointer-events: none; transition: 1s; }
 </style>
 </head>
 <body onload="startApp()">
 
 <div id="loader">
-    <div class="loader-video-style">
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="percent-text" id="loadCount">0%</div>
+    <div class="video-loader-container">
+        <div class="ring-track"></div>
+        <div class="loader-circle" style="--d: 1s; width: 100%; height: 100%;"></div>
+        <div class="loader-circle" style="--d: 1.5s; width: 80%; height: 80%; border-top-color: var(--neon-pink);"></div>
+        <div class="loader-circle" style="--d: 2s; width: 60%; height: 60%;"></div>
+        <div class="percent-display" id="perc">0%</div>
     </div>
-    <div style="margin-top: 20px; font-family: 'Share Tech Mono', monospace; color: #00d4ff; letter-spacing: 5px;">INITIALIZING SYSTEM...</div>
+    <div style="margin-top: 30px; font-family: 'Share Tech Mono'; color: #555;">SYSTEM.INITIALIZE_SEQUENCE(...)</div>
 </div>
 
 <div id="main-content">
-    <canvas id="lightningCanvas"></canvas>
-    <div id="overlay" onclick="closeAll()"></div>
-
-    <div class="music-btn" onclick="toggleM()">
-        <i class="fas fa-music" id="mIcon" style="color: #00d4ff;"></i>
-        <audio id="bgm" loop>
-            <source src="https://files.catbox.moe/j1lae6.mp3" type="audio/mpeg">
-        </audio>
+    <div class="glass-header">
+        <h2 style="font-family: 'Orbitron'; font-size: 16px; letter-spacing: 3px;">ADNAN ARCHIVE v2.0</h2>
     </div>
 
-    <div class="container">
-        <div class="profile-area">
-            <div class="profile">
-                <img src="https://files.catbox.moe/8ca69l.jpeg" alt="Adnan">
-            </div>
-            <h1 style="margin-top:15px;">Washiq Adnan</h1>
-            <p style="color: #00d4ff; font-weight: 300;">Python & Node.js Developer</p>
+    <div class="hero-section">
+        <div class="profile-hex">
+            <img src="https://files.catbox.moe/8ca69l.jpeg" alt="Adnan">
         </div>
+        <div class="hero-text">
+            <h1>Washiq Adnan</h1>
+            <div class="status-badge"><i class="fas fa-circle" style="font-size: 8px; vertical-align: middle;"></i> System Developer</div>
+        </div>
+    </div>
 
-        <div class="glass-card">
-            <h3 style="text-align:left; color:#ff00cc; font-size:16px;"><i class="fas fa-microchip"></i> SYSTEM STATUS</h3>
-            <div class="grid">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c">
-                <img src="https://images.unsplash.com/photo-1542831371-d531d36971e6">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
-            </div>
+    <div class="card-container">
+        <div class="premium-card" onclick="openD('proD')">
+            <i class="fas fa-code-branch"></i>
+            <h3>Tech Stack</h3>
         </div>
+        <div class="premium-card" onclick="openD('eduD')">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Education</h3>
+        </div>
+        <div class="premium-card" onclick="openD('projD')">
+            <i class="fas fa-bolt"></i>
+            <h3>Raha AI</h3>
+        </div>
+        <div class="premium-card" onclick="openD('socD')">
+            <i class="fas fa-satellite-dish"></i>
+            <h3>Networks</h3>
+        </div>
+    </div>
 
-        <div class="menu-grid">
-            <div class="menu-item" onclick="openD('proD')">
-                <i class="fas fa-terminal"></i>
-                <span>Profession</span>
-            </div>
-            <div class="menu-item" onclick="openD('eduD')">
-                <i class="fas fa-university"></i>
-                <span>Education</span>
-            </div>
-            <div class="menu-item" onclick="openD('projD')">
-                <i class="fas fa-brain"></i>
-                <span>Raha AI</span>
-            </div>
-            <div class="menu-item" onclick="openD('emailD')">
-                <i class="fas fa-paper-plane"></i>
-                <span>Contact</span>
-            </div>
-            <div class="menu-item" onclick="openD('socD')" style="grid-column: span 2; background: rgba(0, 212, 255, 0.05);">
-                <i class="fas fa-share-alt"></i>
-                <span>Digital Presence</span>
-            </div>
-        </div>
-        
-        <p style="margin-top:40px; font-size:10px; color:rgba(255,255,255,0.3);">© 2026 WASHIQ ADNAN | BUILT WITH PASSION</p>
+    <div style="margin-top: 50px; padding: 20px; opacity: 0.5; font-size: 12px; letter-spacing: 2px;">
+        ENCRYPTED TERMINAL © 2026
     </div>
 </div>
+
+<div id="overlay" onclick="closeAll()"></div>
 
 <div id="proD" class="drawer">
-    <h3 style="color:#00d4ff; margin-bottom: 20px;">Technical Stack</h3>
-    <div class="info-item"><h3>Languages</h3><p>Expert in Python & JavaScript (Node.js).</p></div>
-    <div class="info-item"><h3>Dev Ops</h3><p>Bot automation & API integration specialist.</p></div>
-    <button onclick="closeAll()" class="form-btn">BACK TO TERMINAL</button>
-</div>
-
-<div id="eduD" class="drawer">
-    <h3 style="color:#00d4ff; margin-bottom: 20px;">Academic Info</h3>
-    <div class="info-item"><h3>Level</h3><p>HSC 2nd Year (Science Group).</p></div>
-    <button onclick="closeAll()" class="form-btn">CLOSE</button>
-</div>
-
-<div id="projD" class="drawer">
-    <h3 style="color:#00d4ff; margin-bottom: 20px;">AI Initiative</h3>
-    <div class="info-item"><h3>Project Raha</h3><p>Advanced LLM integration for messenger platforms.</p></div>
-    <button onclick="closeAll()" class="form-btn">DISMISS</button>
-</div>
-
-<div id="emailD" class="drawer">
-    <h3 style="color:#00d4ff; margin-bottom: 20px;">Direct Message</h3>
-    <form action="mailto:Washidev4@gmail.com" method="POST" enctype="text/plain">
-      <input type="text" placeholder="Your Name" required>
-      <textarea rows="3" placeholder="How can I help you?" required></textarea>
-      <button type="submit" class="form-btn">EXECUTE SEND</button>
-    </form>
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 15px;">DEVELOPER_CORE</h2>
+    <p style="opacity: 0.7; margin-bottom: 20px;">Specializing in Backend Automation & AI Integration.</p>
+    <div style="text-align: left; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border-left: 3px solid var(--neon-pink);">
+        <code style="color: var(--neon-blue);"># Languages: Node.js, Python, C++<br># Speciality: Messenger Bot Logic</code>
+    </div>
+    <button onclick="closeAll()" style="width:100%; margin-top:20px; padding:15px; background:var(--neon-blue); border:none; border-radius:15px; color:#000; font-weight:bold;">RETURN</button>
 </div>
 
 <div id="socD" class="drawer">
-    <h3 style="color:#00d4ff; margin-bottom: 20px;">Social Mesh</h3>
-    <div class="social-links">
-        <a href="https://www.facebook.com/share/1KNxtzq8jn/"><i class="fab fa-facebook"></i> Facebook</a>
-        <a href="https://m.me/washiqadnan.fb"><i class="fab fa-messenger"></i> Messenger</a>
-        <a href="https://wa.me/8801303790672"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a href="https://t.me/+8801303790672"><i class="fab fa-telegram"></i> Telegram</a>
+    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 25px;">SOCIAL_GRID</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <a href="https://m.me/washiqadnan.fb" style="text-decoration:none; padding:15px; background:rgba(255,255,255,0.05); border-radius:15px; color:#fff;"><i class="fab fa-facebook-messenger"></i> Messenger</a>
+        <a href="https://t.me/+8801303790672" style="text-decoration:none; padding:15px; background:rgba(255,255,255,0.05); border-radius:15px; color:#fff;"><i class="fab fa-telegram"></i> Telegram</a>
     </div>
-    <button onclick="closeAll()" class="form-btn" style="margin-top:20px;">CLOSE</button>
 </div>
 
 <script>
 function startApp() {
-    let count = 0;
-    const countEl = document.getElementById('loadCount');
-    
-    // ভিডিওর মত পার্সেন্টেজ কাউন্ট ডাউন/আপ
-    const timer = setInterval(() => {
-        count++;
-        countEl.innerText = count + "%";
-        if(count >= 100) {
-            clearInterval(timer);
-            completeLoading();
+    let p = 0;
+    const txt = document.getElementById('perc');
+    const load = setInterval(() => {
+        p += Math.floor(Math.random() * 3) + 1; // ভিডিওর মত একটু রেন্ডম স্পিড
+        if(p > 100) p = 100;
+        txt.innerText = p + "%";
+        if(p == 100) {
+            clearInterval(load);
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('fade-out');
+                document.getElementById('main-content').style.opacity = "1";
+            }, 500);
         }
-    }, 40); // ৪ সেকেন্ডে ১০০% হবে (৪০০০মি.সে / ১০০)
-
-    function completeLoading() {
-        const loader = document.getElementById('loader');
-        const main = document.getElementById('main-content');
-        loader.classList.add('fade-out');
-        main.style.opacity = "1";
-        document.body.style.overflow = "auto";
-        setTimeout(() => { loader.style.display = 'none'; }, 1000);
-    }
+    }, 50);
 }
 
-// Lightning Canvas Effect (Previous effect kept for background)
-const canvas = document.getElementById('lightningCanvas');
-const ctx = canvas.getContext('2d');
-let w, h;
-function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
-window.addEventListener('resize', resize);
-resize();
-
-class Bolt {
-    constructor() { this.reset(); }
-    reset() {
-        this.x = Math.random() * w; this.y = 0;
-        this.path = [{x: this.x, y: this.y}];
-        this.alpha = 0; this.generate();
-    }
-    generate() {
-        let cx = this.x, cy = this.y;
-        while(cy < h) { cx += (Math.random() - 0.5) * 70; cy += Math.random() * 50; this.path.push({x: cx, y: cy}); }
-    }
-    draw() {
-        if(this.alpha <= 0) return;
-        ctx.beginPath(); ctx.strokeStyle = `rgba(0, 212, 255, ${this.alpha})`;
-        ctx.lineWidth = 2; ctx.moveTo(this.path[0].x, this.path[0].y);
-        for(let p of this.path) ctx.lineTo(p.x, p.y);
-        ctx.stroke(); this.alpha -= 0.05;
-    }
+function openD(id) { 
+    document.getElementById(id).classList.add('active'); 
+    document.getElementById('overlay').style.display = 'block'; 
 }
-const bolt = new Bolt();
-function anim() {
-    ctx.clearRect(0, 0, w, h);
-    if(Math.random() > 0.97) { bolt.reset(); bolt.alpha = 1; }
-    bolt.draw(); requestAnimationFrame(anim);
+function closeAll() { 
+    document.querySelectorAll('.drawer').forEach(d => d.classList.remove('active')); 
+    document.getElementById('overlay').style.display = 'none'; 
 }
-anim();
-
-function openD(id) { document.getElementById(id).classList.add('active'); document.getElementById('overlay').style.display = 'block'; }
-function closeAll() { document.querySelectorAll('.drawer').forEach(d => d.classList.remove('active')); document.getElementById('overlay').style.display = 'none'; }
-const m = document.getElementById('bgm'), i = document.getElementById('mIcon');
-function toggleM() { if(m.paused) { m.play(); i.className = "fas fa-pause"; } else { m.pause(); i.className = "fas fa-music"; } }
 </script>
 
 </body>
-                </html>
-                
+  </html>
+  
