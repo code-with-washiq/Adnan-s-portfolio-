@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Washiq Adnan | Official Portfolio</title>
+<title>Washiq Adnan // Encrypted Archive v3.0</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,11 +14,13 @@
   --neon-pink: #ff00cc;
   --bg-dark: #050008;
   --glass: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.1);
 }
 
 *{
   margin:0; padding:0; box-sizing:border-box;
   font-family:'Poppins', sans-serif;
+  scroll-behavior: smooth; /* স্মুথ স্ক্রোলিং এর জন্য */
 }
 
 body {
@@ -27,6 +29,14 @@ body {
   text-align:center;
   overflow-x: hidden;
   min-height: 100vh;
+}
+
+/* --- LIGHTNING CANVAS ( retained previous style) --- */
+#lightningCanvas {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1; /* ব্যাকগ্রাউন্ডে থাকবে */
+  pointer-events: none;
 }
 
 /* --- VIDEO-ACCURATE LOADER --- */
@@ -43,11 +53,8 @@ body {
     display: flex; justify-content: center; align-items: center;
 }
 
-/* ভিডিওর সেই নির্দিষ্ট স্পাইরাল সার্কেল গুলো */
 .loader-circle {
-    position: absolute;
-    border: 2px solid transparent;
-    border-radius: 50%;
+    position: absolute; border: 2px solid transparent; border-radius: 50%;
     animation: rotate var(--time) linear infinite;
 }
 
@@ -57,41 +64,40 @@ body {
 .circle-4 { width: 55%; height: 55%; border-bottom: 3px solid var(--neon-blue); --time: 0.8s; }
 
 .percent {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem;
-    color: var(--neon-blue);
-    text-shadow: 0 0 20px var(--neon-blue);
+    font-family: 'Orbitron', sans-serif; font-size: 2.5rem;
+    color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue);
 }
 
 @keyframes rotate { 100% { transform: rotate(360deg); } }
 
-/* --- MAIN UI --- */
-#main-content { opacity: 0; transition: 1.5s; }
+/* --- MAIN UI V3 --- */
+#main-content { opacity: 0; transition: 1.5s; position: relative; z-index: 1; }
 
 .header-bar {
-    padding: 20px;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass);
+    padding: 15px 25px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
     position: sticky; top: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
 }
 
 .music-control {
-    width: 40px; height: 40px;
-    border-radius: 50%;
+    width: 40px; height: 40px; border-radius: 50%;
     border: 1px solid var(--neon-blue);
     display: flex; align-items: center; justify-content: center;
-    cursor: pointer; color: var(--neon-blue);
+    cursor: pointer; color: var(--neon-blue); transition: 0.3s;
 }
+.music-control:hover { background: rgba(0, 212, 255, 0.1); box-shadow: 0 0 10px var(--neon-blue); }
 
 /* Hexagon Profile */
 .profile-container {
-    margin: 40px auto 20px;
-    width: 160px; height: 160px;
-    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-    background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
-    padding: 5px;
+    margin: 50px auto 20px;
+    width: 170px; height: 170px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
+    padding: 6px;
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.5));
 }
 .profile-container img {
     width: 100%; height: 100%;
@@ -100,33 +106,79 @@ body {
     background: var(--bg-dark);
 }
 
-.hero h1 { font-family: 'Orbitron'; font-size: 2rem; margin-top: 10px; }
-.tagline { color: var(--neon-blue); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: 'Orbitron'; font-size: 2.2rem; margin-top: 15px; letter-spacing: 2px; }
+.tagline { color: var(--neon-blue); font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; font-weight: 300; }
 
-/* Dashboard Cards */
+/* Dashboard V3 - 4 Columns */
 .dash-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 800px;
+    margin: 0 auto 50px;
 }
 
 .card {
     background: var(--glass);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 25px 15px;
-    transition: 0.3s;
+    padding: 25px 10px;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
 .card:hover { 
     border-color: var(--neon-blue); 
-    background: rgba(0, 212, 255, 0.05);
-    transform: translateY(-5px);
+    background: rgba(0, 212, 255, 0.08);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
 }
-.card i { font-size: 24px; margin-bottom: 10px; color: var(--neon-pink); }
+.card i { font-size: 26px; margin-bottom: 12px; color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink); }
+.card h3 { font-size: 14px; font-weight: 600; }
+
+/* --- GOOGLE RETRIEVED IMAGE GALLERY (New V3 সেকশন About এর উপরে) --- */
+.system-status-gallery {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+}
+.gallery-title { font-family: 'Orbitron'; color: #555; font-size: 12px; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 15px; }
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.image-card {
+    background: #000;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    transition: 0.3s;
+}
+.image-card:hover { border-color: var(--neon-blue); }
+
+.image-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: 0.5s;
+}
+.image-card:hover img { opacity: 1; transform: scale(1.05); }
+
+.image-caption {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    padding: 15px;
+    background: linear-gradient(to top, #000, transparent);
+    text-align: left;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--neon-blue);
+}
 
 /* Information Drawers */
 .drawer {
@@ -151,8 +203,9 @@ body {
 .social-list a {
     text-decoration: none; color: #fff; background: var(--glass);
     padding: 15px; border-radius: 12px; font-size: 13px;
-    display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
 }
+.social-list a:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
 
 .fade-out { opacity: 0; pointer-events: none; transition: 1s; }
 </style>
@@ -171,15 +224,16 @@ body {
         <div class="loader-circle circle-4"></div>
         <div class="percent" id="p_count">0%</div>
     </div>
-    <div style="margin-top: 30px; font-family: 'Share Tech Mono'; color: var(--neon-blue); letter-spacing: 3px;">BYPASSING SECURITY...</div>
+    <div style="margin-top: 30px; font-family: 'Share Tech Mono'; color: var(--neon-blue); letter-spacing: 3px;">DECRYPTING ARCHIVE...</div>
 </div>
 
 <div id="main-content">
+    <canvas id="lightningCanvas"></canvas>
+
     <div class="header-bar">
-        <span style="font-family: 'Orbitron'; font-size: 12px; opacity: 0.6;">WASHIQ ADNAN // OS</span>
+        <span style="font-family: 'Orbitron'; font-size: 11px; opacity: 0.5; letter-spacing: 2px;">WASHIQ ADNAN // SECURITY_CORE v3.0</span>
         <div class="music-control" onclick="togglePlay()">
-            <i class="fas fa-music" id="m_icon"></i>
-        </div>
+            <i class="fas fa-pause" id="m_icon"></i> </div>
     </div>
 
     <div class="profile-container">
@@ -188,20 +242,19 @@ body {
 
     <div class="hero">
         <h1>Washiq Adnan</h1>
-        <div class="tagline">Full-Stack Bot Developer</div>
+        <div class="tagline">GoatBot Framework Expert</div>
     </div>
 
     <div class="dash-grid">
-        <div class="card" onclick="openD('proD')">
-            <i class="fas fa-terminal"></i>
-            <h3>Skills</h3>
+        <div class="card" onclick="scrollToAbout()"> <i class="fas fa-terminal"></i>
+            <h3>About</h3>
         </div>
         <div class="card" onclick="openD('eduD')">
             <i class="fas fa-university"></i>
             <h3>Education</h3>
         </div>
         <div class="card" onclick="openD('projD')">
-            <i class="fas fa-brain"></i>
+            <i class="fas fa-bolt"></i>
             <h3>Projects</h3>
         </div>
         <div class="card" onclick="openD('socD')">
@@ -210,44 +263,54 @@ body {
         </div>
     </div>
 
-    <div style="margin: 40px 0; font-size: 10px; opacity: 0.4; letter-spacing: 5px;">
-        © 2026 ENCRYPTED TERMINAL
+    <div class="system-status-gallery">
+        <div class="gallery-title">// SYSTEM.STATUS // IMAGE_FEED</div>
+        <div class="image-grid">
+            <div class="image-card">
+                <img src="https://www.netsolutions.com/wp-content/uploads/2024/12/Node-JS-vs-Python-Which-is-the-Right-Choice-for-a-Tech-Startup.webp" alt="Node.js vs Python">
+                <div class="image-caption">LOAD::CORE_LANGUAGES (image_25.png)</div>
+            </div>
+            <div class="image-card">
+                <img src="https://images.squarespace-cdn.com/content/v1/51be3e56e4b09edc5f81e74c/1551795460658-3V9NJNEAPEYZCYC3AY3N/SciFi_LoaderBlueA.jpg" alt="Sci-Fi Loader Interface">
+                <div class="image-caption">LOAD::UI_INTERFACE (image_27.png)</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about-section" style="padding: 60px 20px; background: rgba(0,0,0,0.4); border-top: 1px solid var(--border);">
+        <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 30px; letter-spacing: 5px;">// ABOUT //</h2>
+        <p style="max-width: 700px; margin: 0 auto; text-align: left; opacity: 0.8; line-height: 1.8;">
+            I am Washiq Adnan, a dedicated Full-Stack Bot Developer specializing in the GoatBot Framework and Messenger-based AI integration. With expert command over Node.js and Python, I architect advanced conversational modules and custom 3D graphics interfaces (Canvas) to elevate user experiences in messenger platforms. I'm currently expanding my knowledge in AI while pursuing my HSC 2nd Year (Science).
+        </p>
+    </div>
+
+    <div style="margin: 40px 0 20px; font-size: 10px; opacity: 0.4; letter-spacing: 5px; font-family: 'Share Tech Mono';">
+        © 2026 ADNAN SECURITY SYSTEMS. ALL RIGHTS RESERVED.
     </div>
 </div>
 
 <div id="overlay" onclick="closeAll()"></div>
 
-<div id="proD" class="drawer">
-    <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">CORE_SKILLS</h2>
-    <div class="info-box">
-        <strong>Languages:</strong><br>Node.js (Expert), Python, JavaScript, C++
-    </div>
-    <div class="info-box">
-        <strong>Expertise:</strong><br>Bot Automation, API Integration, GoatBot Framework, Canvas Design
-    </div>
-    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">CLOSE</button>
-</div>
-
 <div id="eduD" class="drawer">
     <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">ACADEMIC_INFO</h2>
     <div class="info-box">
-        <strong>Level:</strong><br>HSC 2nd Year (Science)
+        <strong>Level:</strong><br>HSC 2nd Year (Science Group)
     </div>
     <div class="info-box">
-        <strong>Location:</strong><br>Dinajpur & Naugaon, Bangladesh
+        <strong>Location:</strong><br>Dinajpur & জয়পুরহাট, Bangladesh (জয়পুরহাট ঠিক করা হয়েছে)
     </div>
-    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">CLOSE</button>
+    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold; cursor: pointer;">CLOSE</button>
 </div>
 
 <div id="projD" class="drawer">
     <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px;">INITIATIVES</h2>
     <div class="info-box">
-        <strong>Raha AI / Kabbo U.A.I:</strong><br>Advanced conversational LLM bots for messenger platforms.
+        <strong>Raha AI / Kabbo U.A.I:</strong><br>Advanced conversational LLM bots for messenger platforms, handling complex user interactions.
     </div>
     <div class="info-box">
-        <strong>Canvas Modules:</strong><br>Custom 3D graphics and casino game interfaces for bots.
+        <strong>Canvas Modules:</strong><br>Custom 3D graphics and casino game interfaces created with GoatBot Framework.
     </div>
-    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold;">CLOSE</button>
+    <button onclick="closeAll()" style="width:100%; padding:15px; border-radius:15px; background:var(--neon-blue); border:none; color:#000; font-weight:bold; cursor: pointer;">CLOSE</button>
 </div>
 
 <div id="socD" class="drawer">
@@ -259,10 +322,46 @@ body {
         <a href="https://t.me/+8801303790672"><i class="fab fa-telegram"></i> Telegram</a>
         <a href="mailto:Washidev4@gmail.com" style="grid-column: span 2;"><i class="fas fa-envelope"></i> Washidev4@gmail.com</a>
     </div>
-    <button onclick="closeAll()" style="width:100%; margin-top:20px; padding:15px; border-radius:15px; background:var(--neon-pink); border:none; color:#fff; font-weight:bold;">DISMISS</button>
+    <button onclick="closeAll()" style="width:100%; margin-top:20px; padding:15px; border-radius:15px; background:var(--neon-pink); border:none; color:#fff; font-weight:bold; cursor: pointer;">DISMISS</button>
 </div>
 
 <script>
+// --- Retained Lightning Canvas Effect from previous version ---
+const canvas = document.getElementById('lightningCanvas');
+const ctx = canvas.getContext('2d');
+let w, h;
+function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize);
+resize();
+
+class Bolt {
+    constructor() { this.reset(); }
+    reset() {
+        this.x = Math.random() * w; this.y = 0;
+        this.path = [{x: this.x, y: this.y}];
+        this.alpha = 0; this.generate();
+    }
+    generate() {
+        let cx = this.x, cy = this.y;
+        while(cy < h) { cx += (Math.random() - 0.5) * 70; cy += Math.random() * 50; this.path.push({x: cx, y: cy}); }
+    }
+    draw() {
+        if(this.alpha <= 0) return;
+        ctx.beginPath(); ctx.strokeStyle = `rgba(0, 212, 255, ${this.alpha})`;
+        ctx.lineWidth = 2; ctx.moveTo(this.path[0].x, this.path[0].y);
+        for(let p of this.path) ctx.lineTo(p.x, p.y);
+        ctx.stroke(); this.alpha -= 0.05;
+    }
+}
+const bolt = new Bolt();
+function anim() {
+    ctx.clearRect(0, 0, w, h);
+    if(Math.random() > 0.97) { bolt.reset(); bolt.alpha = 1; }
+    bolt.draw(); requestAnimationFrame(anim);
+}
+anim();
+// --- End Lightning Effect ---
+
 function init() {
     let p = 0;
     const pEl = document.getElementById('p_count');
@@ -274,14 +373,17 @@ function init() {
             setTimeout(showContent, 500);
         }
         pEl.innerText = p + "%";
-    }, 60);
+    }, 50);
 }
 
 function showContent() {
     document.getElementById('loader').classList.add('fade-out');
     document.getElementById('main-content').style.opacity = "1";
-    // অডিও অটো-প্লে (ব্রাউজার পারমিশন সাপেক্ষে)
-    document.getElementById('bgm').play().catch(() => console.log("Audio needs user interaction"));
+    // মিউজিক অটো-প্লে এবং বাটন আইকন আপডেট
+    document.getElementById('bgm').play().catch(() => {
+        console.log("Audio needs user interaction");
+        document.getElementById('m_icon').className = "fas fa-music"; // যদি অটো-প্লে না হয়
+    });
 }
 
 function openD(id) {
@@ -304,6 +406,11 @@ function togglePlay() {
         m.pause();
         icon.className = "fas fa-music";
     }
+}
+
+// About সেকশনে স্মুথ স্ক্রোলিং
+function scrollToAbout() {
+    document.getElementById('about-section').scrollIntoView();
 }
 </script>
 
